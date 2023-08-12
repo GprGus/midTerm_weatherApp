@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" src="/styles/">
-    <title>Weather App</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather App</title>
+  <link rel="stylesheet" href="gustavo.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDXY5ehg2gH6EgcORxyBFYmjUhFgbss95A&libraries=places"></script>
+  <script src="https://kit.fontawesome.com/b14eafc455.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <nav>
-        
-    </nav>
+    <header>
+        <h1>Weather App</h1>
+        <form>
+            <input id="city-input" type="text" placeholder="Enter a city">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+        </form>
+    </header>
+
+  <div class="container">
+    <h2 style="font-size:2.5rem;text-align: center;">Current Weather</h2>
+    <div id="weather"></div>
+
+
+    <!-- <div id="favorites">
+      <h2>Favorite Cities</h2>
+      <ul></ul>
+    </div> -->
+
+
+      <h2 style="font-size:2.5rem;text-align: center;">5-Day Forecast</h2>
+      <div id="forecast"></div>
+    </section>
+  </div>
+  <script src="5daysForecast.js"></script>
+  <script src="3hoursForecast.js"></script>
+  <script src="currentWeather.js"></script>
+  <script src="handler.js"></script>
 </body>
 </html>

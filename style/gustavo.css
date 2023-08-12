@@ -1,0 +1,106 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap");
+* {
+  font-family: "Roboto", sans-serif;
+}
+
+#forecast {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 5px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+
+.border {
+  margin-right: 139px;
+  margin-left: 139px;
+  border: 2px solid rgba(0, 0, 0, 0.525);
+  border-radius: 10px;
+}
+
+.card {
+  border: 1px solid rgba(0, 0, 0, 0.225);
+  border-radius: 30px;
+  text-align: center;
+  height: 450px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+.card .card-content {
+  padding: 10px;
+  font-size: 1.3rem;
+}
+.card .card-content .tempIcon {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-evenly;
+}
+.card .card-content .tempIcon img {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+}
+.card .card-content .tempIcon p {
+  font-family: "Lora", serif;
+  font-size: 2.3rem;
+}
+.card .card-content .minMaxTemp {
+  margin-left: 35px;
+  margin-right: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.card .card-content .cloudWind {
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: aliceblue;
+  align-items: center;
+}
+header form {
+  display: flex;
+  flex-direction: row;
+  padding: 1px;
+}
+header form input {
+  outline: 1px solid grey;
+  border: none;
+  height: 27px;
+  width: 150px;
+}
+header form input:focus {
+  outline: none;
+}
+header form input:focus-within {
+  outline: 1px solid gray;
+}
+header form button {
+  border: 1px solid black;
+  height: 30px;
+  width: 30px;
+  background: black;
+  color: white;
+}/*# sourceMappingURL=gustavo.css.map */
