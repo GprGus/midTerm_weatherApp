@@ -3,8 +3,14 @@ const lon = '-123.116226';
 const apiKey = '6cb674453572835b5ade4f38d097ef0e';
 const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&units=metric&lon=${lon}&appid=${apiKey}`;
 
-fetch("")
-// .then(response => response.json())
+function handleClick(dateText) {
+    const finalData = formatDate(dateText); 
+    fetch3HoursForecast(finalData); 
+}
+
+
+fetch(apiUrl)
+.then(response => response.json())
 .then(data => {
     const forecast = data.list.filter(item => item.dt_txt.includes('12:00:00'));
     const forecastDiv = document.getElementById('forecast');

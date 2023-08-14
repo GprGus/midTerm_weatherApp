@@ -15,12 +15,46 @@
   overflow-x: auto;
 }
 
-.border {
-  margin-right: 139px;
-  margin-left: 139px;
-  border: 2px solid rgba(0, 0, 0, 0.525);
-  border-radius: 10px;
+#hourlyForecast {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
+
+.section {
+  border: 1px solid rgba(0, 0, 0, 0.225);
+  border-radius: 30px;
+  height: 150px;
+  width:150px;
+  .section-content {
+    .details1 {
+      display: flex;
+      flex-direction: row;
+      margin-bottom: -20px;
+      margin-left: 35px;
+      p {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+    .details2 {
+      display: flex;
+      flex-direction: row;
+      margin-left: 15px;
+      p {
+        display: flex;
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+
+
 
 .card {
   border: 1px solid rgba(0, 0, 0, 0.225);
