@@ -1,19 +1,21 @@
-const latit = '49.246292'; 
+const latit = '49.246292';
 const longi = '-123.116226';
+
 const apiKeY = '6cb674453572835b5ade4f38d097ef0e';
 const apiUrL = `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&units=metric&lon=${longi}&appid=${apiKeY}`;
 
-fetch(apiUrL).then(response => response.json).then(data => {
-    // const weather = data.filter(item => item.dt_txt.includes('12:00:00'));
+fetch(apiUrL)
+  .then(response => response.json())
+  .then(data => {
     const weatherDiv = document.getElementById('weather');
-    let date = new Date(`${data.dt*1000}`);
+    const date = new Date(data.dt * 1000);
     const dateText = date.toLocaleDateString();
     const iconWeather = data.weather[0].icon;
     const tempWeather = data.main.temp;
     const minWeather = data.main.temp_min;
     const maxWeather = data.main.temp_max;
     const cloudsWeather = data.clouds.all;
-    const windSpeedWeather = (data.wind.speed * 3.6)
+    const windSpeedWeather = (data.wind.speed * 3.6);
     const popWeather = data.pop;
 
     const weatherItem = document.createElement("div");
@@ -28,7 +30,7 @@ fetch(apiUrL).then(response => response.json).then(data => {
                     <p>&nbsp;${minWeather}º</p>
                     <p>&nbsp;${maxWeather}º</p>
                     <p>&nbsp;${cloudsWeather}%</p>
-                    <p>&nbsp;${windSpeedWeather}Km/h</p>
+                    <p>&nbsp;${windSpeedWeather} Km/h</p>
                     <p>&nbsp;${popWeather}%</p>
                 </div>
             </div>
@@ -36,9 +38,7 @@ fetch(apiUrL).then(response => response.json).then(data => {
     </div>
     `;
     weatherDiv.appendChild(weatherItem);
-
-    // weather.forEach(item => {
-    // });
-}).catch(error => {
-    // console.error('Error fetching data:', error);
-});
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });

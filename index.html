@@ -6,13 +6,32 @@
   <title>Weather App</title>
   <link rel="stylesheet" href="/style/gustavo.css">
   <link rel="icon" href="https://openweathermap.org/img/wn/10d@2x.png">
-  <script>
-    (g=>{var h,a,k,p="The Google Maps JavaScript API",c="google",l="importLibrary",q="__ib__",m=document,b=window;b=b[c]||(b[c]={});var d=b.maps||(b.maps={}),r=new Set,e=new URLSearchParams,u=()=>h||(h=new Promise(async(f,n)=>{await (a=m.createElement("script"));e.set("libraries",[...r]+"");for(k in g)e.set(k.replace(/[A-Z]/g,t=>"_"+t[0].toLowerCase()),g[k]);e.set("callback",c+".maps."+q);a.src=`https://maps.${c}apis.com/maps/api/js?`+e;d[q]=f;a.onerror=()=>h=n(Error(p+" could not load."));a.nonce=m.querySelector("script[nonce]")?.nonce||"";m.head.append(a)}));d[l]?console.warn(p+" only loads once. Ignoring:",g):d[l]=(f,...n)=>r.add(f)&&u().then(()=>d[l](f,...n))})({
-      key: "AIzaSyDXY5ehg2gH6EgcORxyBFYmjUhFgbss95A",
-      v: "weekly",
-    });
-  </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWSWLpkqINMwLQgCel1Q0wYKHA8zcg4Q&libraries=places"></script>
   <script src="https://kit.fontawesome.com/b14eafc455.js" crossorigin="anonymous"></script>
+  <script>
+
+    window.onload = function() {
+      var autocomplete;
+      var id = "city-input";
+
+      autocomplete = new google.maps.places.Autocomplete(document.getElementById(id),{
+         types:['geocode'],
+      });
+
+      google.maps.event.addListener(autocomplete,'place_changed', function(){
+        var place = autocomplete.getPlace();
+
+        // Esta função estã no arquivo 5daysForecast.js
+        // Observe que são enviados como parâmetros a latitude e longiture
+        informacoesDoTempo(
+          place.geometry.location.lat(),
+          place.geometry.location.lng()
+        );
+
+      })
+      informacoesDoTempo(49.2827, -123.1207);
+    }
+   </script>
 </head>
 <body>
     <header>
@@ -20,8 +39,11 @@
         <form>
             <input id="city-input" type="text" placeholder="Enter a city">
             <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input id="latitude" type="hidden">
+            <input id="longitude" type="hidden">
         </form>
     </header>
+
 
   <div class="container">
     <h2 style="font-size:2.5rem;text-align: center;">Current Weather</h2>
@@ -40,10 +62,9 @@
 
     </section>
 </div>
-<script src="/script/searchBar.js"></script>
-  <script src="/script/currentWeather.js"></script>
-  <script src="/script/5daysForecast.js"></script>
-  <script src="/script/3hoursForecast.js"></script>
-  <script src="/script/handler.js"></script>
+  <script src="script/currentWeather.js"></script>
+  <script src="script/5daysForecast.js"></script>
+  <script src="script/3hoursForecast.js"></script>
+  <script src="script/handler.js"></script>
 </body>
 </html>
