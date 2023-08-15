@@ -16,6 +16,7 @@
 
       autocomplete = new google.maps.places.Autocomplete(document.getElementById(id),{
          types:['geocode'],
+          fields: ["place_id", "geometry", "name"]
       });
 
       google.maps.event.addListener(autocomplete,'place_changed', function(){
@@ -27,7 +28,7 @@
           place.geometry.location.lat(),
           place.geometry.location.lng()
         );
-
+        
       })
       informacoesDoTempo(49.2827, -123.1207);
     }
@@ -35,10 +36,12 @@
 </head>
 <body>
     <header>
-        <h1>Weather App</h1>
+      <select id="favorites-list">
+        <option value="Favorites">Favorites cities</option>
+      </select>
+      
         <form>
-            <input id="city-input" type="text" placeholder="Enter a city">
-            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input id="city-input" type="text" placeholder="Search bar">
             <input id="latitude" type="hidden">
             <input id="longitude" type="hidden">
         </form>

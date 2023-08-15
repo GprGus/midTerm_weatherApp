@@ -3,6 +3,15 @@
 * {
   font-family: 'Roboto', sans-serif;
 }
+body {
+  background-image: url("wall.jpg");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
 #forecast {
   font-family: "Roboto", sans-serif;
@@ -13,6 +22,65 @@
   margin: 5px;
   flex-wrap: nowrap;
   overflow-x: auto;
+  .card {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    background-color: white;
+    border-radius: 30px;
+    text-align: center;
+    height: 450px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+    
+    &:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+  
+    .card-content {
+      padding: 10px;
+      font-size:1.3rem;
+      
+      .tempIcon {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        justify-content: space-evenly;
+  
+        img {
+          width: 100px;
+          height: 100px;
+          margin-top: 10px;
+        }
+  
+        p {
+          font-family: 'Lora', serif;
+          font-size: 2.3rem;
+        }
+      }
+  
+      .minMaxTemp {
+        margin-left: 35px;
+        margin-right: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+  
+      .cloudWind {
+        margin-left: 25px;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
 }
 
 #hourlyForecast {
@@ -23,93 +91,73 @@
   justify-content: space-between;
   flex-wrap: nowrap;
   overflow-x: auto;
-}
-
-.section {
-  border: 1px solid rgba(0, 0, 0, 0.225);
-  border-radius: 30px;
-  height: 150px;
-  width:150px;
-  .section-content {
-    .details1 {
-      display: flex;
-      flex-direction: row;
-      margin-bottom: -20px;
-      margin-left: 35px;
-      p {
+  .section {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    background-color: white;
+    margin-right: 20px;
+    height: 150px;
+    width:150px;
+    .section-content {
+      .details1 {
         display: flex;
         flex-direction: row;
+        margin-bottom: -20px;
+        margin-left: 20px;
+        p {
+          display: flex;
+          flex-direction: row;
+        }
       }
-    }
-    .details2 {
-      display: flex;
-      flex-direction: row;
-      margin-left: 15px;
-      p {
+      .details2 {
         display: flex;
         flex-direction: row;
+        margin-left: 15px;
+        p {
+          display: flex;
+          flex-direction: row;
+        }
       }
     }
   }
 }
 
-
-
-
-.card {
-  border: 1px solid rgba(0, 0, 0, 0.225);
-  border-radius: 30px;
-  text-align: center;
-  height: 450px;
-  width: 270px;
+#weather {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
-  margin-top: 15px;
-  margin-bottom: 15px;
-  
-  &:hover {
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .card-content {
-    padding: 10px;
-    font-size:1.3rem;
-    
-    .tempIcon {
-      display: flex;
-      flex-direction: row;
-      text-align: center;
-      justify-content: space-evenly;
-
-      img {
-        width: 100px;
-        height: 100px;
-        margin-top: 10px;
-      }
-
-      p {
-        font-family: 'Lora', serif;
-        font-size: 2.3rem;
-      }
-    }
-
-    .minMaxTemp {
-      margin-left: 35px;
-      margin-right: 35px;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: auto;
+  .ThourMain {
+    background-color: white ;
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    height: 350px;
+    width: 700px;
+    .mainContent {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-    }
-
-    .cloudWind {
-      margin-left: 25px;
-      margin-right: 25px;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      .dateIcon {
+        text-align: center;
+        margin-left: 20px;
+      }
+      .temp {
+        display: flex;
+        flex-direction: column;
+        margin-right: 80px;
+        h2 {
+          text-align: center;
+        }
+        .generalDate {
+          
+        }
+      }
     }
   }
 }
@@ -118,6 +166,7 @@ header {
   display:flex;
   flex-direction:row;
   justify-content: space-between;
+  height: 70px;
   background-color: aliceblue;
   align-items: center;
 
@@ -130,8 +179,9 @@ header {
     input {
       outline:1px solid grey;
       border:none;
-      height: 27px;
-      width: 150px;
+      height: 40px;
+      width: 200px;
+      border-radius: 10px;
       // margin-top: 1px;
   
       &:focus {
@@ -151,4 +201,164 @@ header {
       color:white;
     }
   }
+}
+
+
+
+@media (max-width: 375px) {
+  // .container {
+  //   display: none;
+  // }
+
+  #forecast {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  max-width: 375px;
+  margin: 10px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  .card {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    text-align: center;
+    height: 450px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+    
+    &:hover {
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+    }
+  
+    .card-content {
+      padding: 10px;
+      font-size:1.3rem;
+      
+      .tempIcon {
+        display: flex;
+        flex-direction: row;
+        text-align: center;
+        justify-content: space-evenly;
+  
+        img {
+          width: 100px;
+          height: 100px;
+          margin-top: 10px;
+        }
+  
+        p {
+          font-family: 'Lora', serif;
+          font-size: 2.3rem;
+        }
+      }
+  
+      .minMaxTemp {
+        margin-left: 35px;
+        margin-right: 35px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+  
+      .cloudWind {
+        margin-left: 25px;
+        margin-right: 25px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+  }
+}
+
+#hourlyForecast {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  max-width: 375px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  .section {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    margin-right: 10px;
+    height: 150px;
+    width:150px;
+    .section-content {
+      .details1 {
+        display: flex;
+        flex-direction: row;
+        margin-left: 20px;
+        align-items: center;
+        p {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+      .details2 {
+        display: flex;
+        flex-direction: row;
+        margin-left: 20px;
+        align-items: center;
+        p {
+          display: flex;
+          flex-direction: row;
+        }
+      }
+    }
+  }
+}
+
+#weather {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.8rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: auto;
+  .ThourMain {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    height: 220px;
+    width: 345px;
+    .mainContent {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      .dateIcon {
+        text-align: center;
+        margin-left: 20px;
+        img {
+          max-width: 120px;
+        }
+      }
+      .temp {
+        display: flex;
+        flex-direction: column;
+        margin-right: 80px;
+        h2 {
+          text-align: center;
+        }
+        .generalDate {
+          
+        }
+      }
+    }
+  }
+}
 }

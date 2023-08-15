@@ -33,7 +33,7 @@ function formatDate(str) {
                     <div class="section-content">
                         <p style="text-align:center;margin-bottom:-10px;">${DateText}</p>
                         <div class="details1">
-                            <p>${TemP}º</p>
+                            <p>${TemP}ºC</p>
                             <p style="margin-left:10px;"><i class="fa-solid fa-cloud"></i>&nbsp;${ClouD}%</p>
                         </div>
                         <div class="details2">

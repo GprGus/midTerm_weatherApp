@@ -4,6 +4,16 @@
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  background-image: url("wall.jpg");
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #forecast {
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
@@ -13,6 +23,58 @@
   margin: 5px;
   flex-wrap: nowrap;
   overflow-x: auto;
+}
+#forecast .card {
+  border: 1px solid rgba(0, 0, 0, 0.225);
+  background-color: white;
+  border-radius: 30px;
+  text-align: center;
+  height: 450px;
+  width: 270px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  transition: box-shadow 0.3s;
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-bottom: 15px;
+}
+#forecast .card:hover {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+}
+#forecast .card .card-content {
+  padding: 10px;
+  font-size: 1.3rem;
+}
+#forecast .card .card-content .tempIcon {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  justify-content: space-evenly;
+}
+#forecast .card .card-content .tempIcon img {
+  width: 100px;
+  height: 100px;
+  margin-top: 10px;
+}
+#forecast .card .card-content .tempIcon p {
+  font-family: "Lora", serif;
+  font-size: 2.3rem;
+}
+#forecast .card .card-content .minMaxTemp {
+  margin-left: 35px;
+  margin-right: 35px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#forecast .card .card-content .cloudWind {
+  margin-left: 25px;
+  margin-right: 25px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 #hourlyForecast {
@@ -24,88 +86,75 @@
   flex-wrap: nowrap;
   overflow-x: auto;
 }
-
-.section {
+#hourlyForecast .section {
   border: 1px solid rgba(0, 0, 0, 0.225);
   border-radius: 30px;
+  background-color: white;
+  margin-right: 20px;
   height: 150px;
   width: 150px;
 }
-.section .section-content .details1 {
+#hourlyForecast .section .section-content .details1 {
   display: flex;
   flex-direction: row;
   margin-bottom: -20px;
-  margin-left: 35px;
+  margin-left: 20px;
 }
-.section .section-content .details1 p {
+#hourlyForecast .section .section-content .details1 p {
   display: flex;
   flex-direction: row;
 }
-.section .section-content .details2 {
+#hourlyForecast .section .section-content .details2 {
   display: flex;
   flex-direction: row;
   margin-left: 15px;
 }
-.section .section-content .details2 p {
+#hourlyForecast .section .section-content .details2 p {
   display: flex;
   flex-direction: row;
 }
 
-.card {
+#weather {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.3rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  margin: auto;
+}
+#weather .ThourMain {
+  background-color: white;
   border: 1px solid rgba(0, 0, 0, 0.225);
   border-radius: 30px;
+  height: 350px;
+  width: 700px;
+}
+#weather .ThourMain .mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+}
+#weather .ThourMain .mainContent .dateIcon {
   text-align: center;
-  height: 450px;
-  width: 270px;
+  margin-left: 20px;
+}
+#weather .ThourMain .mainContent .temp {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-  transition: box-shadow 0.3s;
-  margin-top: 15px;
-  margin-bottom: 15px;
+  margin-right: 80px;
 }
-.card:hover {
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
-}
-.card .card-content {
-  padding: 10px;
-  font-size: 1.3rem;
-}
-.card .card-content .tempIcon {
-  display: flex;
-  flex-direction: row;
+#weather .ThourMain .mainContent .temp h2 {
   text-align: center;
-  justify-content: space-evenly;
 }
-.card .card-content .tempIcon img {
-  width: 100px;
-  height: 100px;
-  margin-top: 10px;
-}
-.card .card-content .tempIcon p {
-  font-family: "Lora", serif;
-  font-size: 2.3rem;
-}
-.card .card-content .minMaxTemp {
-  margin-left: 35px;
-  margin-right: 35px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.card .card-content .cloudWind {
-  margin-left: 25px;
-  margin-right: 25px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  height: 70px;
   background-color: aliceblue;
   align-items: center;
 }
@@ -117,8 +166,9 @@ header form {
 header form input {
   outline: 1px solid grey;
   border: none;
-  height: 27px;
-  width: 150px;
+  height: 40px;
+  width: 200px;
+  border-radius: 10px;
 }
 header form input:focus {
   outline: none;
@@ -132,4 +182,144 @@ header form button {
   width: 30px;
   background: black;
   color: white;
+}
+
+@media (max-width: 375px) {
+  #forecast {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 375px;
+    margin: 10px;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  #forecast .card {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    text-align: center;
+    height: 450px;
+    width: 270px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+    transition: box-shadow 0.3s;
+    margin-top: 15px;
+    margin-right: 10px;
+    margin-bottom: 30px;
+  }
+  #forecast .card:hover {
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  }
+  #forecast .card .card-content {
+    padding: 10px;
+    font-size: 1.3rem;
+  }
+  #forecast .card .card-content .tempIcon {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    justify-content: space-evenly;
+  }
+  #forecast .card .card-content .tempIcon img {
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+  }
+  #forecast .card .card-content .tempIcon p {
+    font-family: "Lora", serif;
+    font-size: 2.3rem;
+  }
+  #forecast .card .card-content .minMaxTemp {
+    margin-left: 35px;
+    margin-right: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #forecast .card .card-content .cloudWind {
+    margin-left: 25px;
+    margin-right: 25px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  #hourlyForecast {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.3rem;
+    max-width: 375px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  #hourlyForecast .section {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    margin-right: 10px;
+    height: 150px;
+    width: 150px;
+  }
+  #hourlyForecast .section .section-content .details1 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    align-items: center;
+  }
+  #hourlyForecast .section .section-content .details1 p {
+    display: flex;
+    flex-direction: row;
+  }
+  #hourlyForecast .section .section-content .details2 {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+    align-items: center;
+  }
+  #hourlyForecast .section .section-content .details2 p {
+    display: flex;
+    flex-direction: row;
+  }
+  #weather {
+    font-family: "Roboto", sans-serif;
+    font-size: 0.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: auto;
+  }
+  #weather .ThourMain {
+    border: 1px solid rgba(0, 0, 0, 0.225);
+    border-radius: 30px;
+    height: 220px;
+    width: 345px;
+  }
+  #weather .ThourMain .mainContent {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  #weather .ThourMain .mainContent .dateIcon {
+    text-align: center;
+    margin-left: 20px;
+  }
+  #weather .ThourMain .mainContent .dateIcon img {
+    max-width: 120px;
+  }
+  #weather .ThourMain .mainContent .temp {
+    display: flex;
+    flex-direction: column;
+    margin-right: 80px;
+  }
+  #weather .ThourMain .mainContent .temp h2 {
+    text-align: center;
+  }
 }/*# sourceMappingURL=gustavo.css.map */

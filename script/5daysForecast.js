@@ -29,6 +29,7 @@ function informacoesDoTempo(lat,lon){
             const finalMax = Math.ceil(max);
             const wind = item.wind.speed;
             const clouds = item.clouds.all;
+            // const city = item.city.name;
             const forecastItem = document.createElement('div');
             forecastItem.innerHTML = `
             <div class="card" onclick="handleClick('${dateText}')">
