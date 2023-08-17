@@ -4,33 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <link rel="stylesheet" href="/style/gustavo.css">
+  <link rel="stylesheet" href="/style/style.css">
   <link rel="icon" href="https://openweathermap.org/img/wn/10d@2x.png">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWSWLpkqINMwLQgCel1Q0wYKHA8zcg4Q&libraries=places"></script>
   <script src="https://kit.fontawesome.com/b14eafc455.js" crossorigin="anonymous"></script>
   <script>
 
     window.onload = function() {
-      var autocomplete;
-      var id = "city-input";
-
+      let autocomplete;
+      let id = "city-input";
       autocomplete = new google.maps.places.Autocomplete(document.getElementById(id),{
          types:['geocode'],
           fields: ["place_id", "geometry", "name"]
       });
 
       google.maps.event.addListener(autocomplete,'place_changed', function(){
-        var place = autocomplete.getPlace();
-
-        // Esta função estã no arquivo 5daysForecast.js
-        // Observe que são enviados como parâmetros a latitude e longiture
-        informacoesDoTempo(
-          place.geometry.location.lat(),
-          place.geometry.location.lng()
-        );
-        
+        let place = autocomplete.getPlace();
+        localStorage.setItem("cityName", place.name);
+        let lat = JSON.stringify(place.geometry.location.lat());
+        let lon =  JSON.stringify(place.geometry.location.lng()) ;
+        localStorage.setItem("latitude", lat)
+        localStorage.setItem("longitude", lon)
+        location.reload();
       })
-      informacoesDoTempo(49.2827, -123.1207);
     }
    </script>
 </head>
@@ -49,8 +45,10 @@
 
 
   <div class="container">
-    <h2 style="font-size:2.5rem;text-align: center;">Current Weather</h2>
-    <div id="weather"></div>
+    <h2 style="font-size:1rem;text-align: start;">Current Weather</h2>
+    <div id="frame">
+      <div id="weather"></div>
+    </div>
 
 
     <!-- <div id="favorites">
@@ -68,6 +66,5 @@
   <script src="script/currentWeather.js"></script>
   <script src="script/5daysForecast.js"></script>
   <script src="script/3hoursForecast.js"></script>
-  <script src="script/handler.js"></script>
 </body>
 </html>
