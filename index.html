@@ -4,28 +4,39 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Weather App</title>
-  <link rel="stylesheet" href="/style/style.css">
+  <link rel="stylesheet" href="style/style.css">
   <link rel="icon" href="https://openweathermap.org/img/wn/10d@2x.png">
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCQWSWLpkqINMwLQgCel1Q0wYKHA8zcg4Q&libraries=places"></script>
   <script src="https://kit.fontawesome.com/b14eafc455.js" crossorigin="anonymous"></script>
   <script>
 
     window.onload = function() {
+      localStorage.clear();
+
       let autocomplete;
       let id = "city-input";
       autocomplete = new google.maps.places.Autocomplete(document.getElementById(id),{
-         types:['geocode'],
-          fields: ["place_id", "geometry", "name"]
+         types:['geocode']
       });
 
       google.maps.event.addListener(autocomplete,'place_changed', function(){
-        let place = autocomplete.getPlace();
+        const place = autocomplete.getPlace();
         localStorage.setItem("cityName", place.name);
-        let lat = JSON.stringify(place.geometry.location.lat());
-        let lon =  JSON.stringify(place.geometry.location.lng()) ;
-        localStorage.setItem("latitude", lat)
-        localStorage.setItem("longitude", lon)
-        location.reload();
+
+        const latitude = place.geometry.location.lat();
+        const longitude = place.geometry.location.lng();
+        
+        localStorage.setItem("latitude", latitude);
+        localStorage.setItem("longitude", longitude);
+
+        const date = transportDate();
+        
+        currentWeather(latitude,longitude);
+
+        dailyForecast(latitude,longitude);
+
+        hourlyForecast(date,latitude,longitude);
+
       })
     }
    </script>
@@ -40,33 +51,29 @@
             <input id="city-input" type="text" placeholder="Search bar">
             <input id="latitude" type="hidden">
             <input id="longitude" type="hidden">
-        </form>
-        <p>alo</p>
-        
+        </form> 
     </header>
 
 
   <div class="container">
-    <h2 style="font-size:1rem;text-align: start;">Current Weather</h2>
+    <h2 style="font-size:1rem;text-align: center;">Current Weather</h2>
     <div id="frame">
       <div id="weather"></div>
     </div>
-
-
-    <!-- <div id="favorites">
-      <h2>Favorite Cities</h2>
-      <ul></ul>
-    </div> -->
-
-
-      <h2 style="font-size:2.5rem;text-align: center;">5 - Day Forecast / 3 Hours Forecast</h2>
+    
+      <h2 style="font-size:1.5rem;text-align: center;">5 Days Forecast</h2>
       <div id="forecast"></div>
+      <h2 style="font-size:1.5rem;text-align: center;">3 Hours Forecast</h2>
       <div id="hourlyForecast"></div>
 
     </section>
 </div>
+  <script src="script/geolocation.js"></script>
+  <script src="script/funcao2.js"></script>
   <script src="script/currentWeather.js"></script>
   <script src="script/5daysForecast.js"></script>
   <script src="script/3hoursForecast.js"></script>
+  
+  
 </body>
 </html>

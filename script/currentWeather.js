@@ -1,57 +1,63 @@
 const latit = parseFloat(localStorage.getItem("latitude"));
 const longi = parseFloat(localStorage.getItem("longitude"));
-// const longi = localStorage.getItem(longitude);
-const apiKeY = '6cb674453572835b5ade4f38d097ef0e';
-const apiUrL = `https://api.openweathermap.org/data/2.5/weather?lat=${latit}&lon=${longi}&appid=${apiKeY}`;
 
-fetch(apiUrL)
-  .then(response => response.json())
-  .then(data => {
-    const weatherDiv = document.getElementById('weather');
-    const date = new Date(data.dt * 1000);
-    const dateText = date.toLocaleDateString();
-    const iconWeather = data.weather[0].icon;
-    const city = localStorage.getItem("cityName");
-    const tempWeather = Math.round(data.main.temp - 273.15);
-    const fWeather = Math.round((data.main.temp - 273.15) * 9/5 + 32);
-    const minWeather = Math.round(data.main.temp_min - 273.15);
-    const maxWeather = Math.round(data.main.temp_max - 273.15);
-    const fMinWeather = Math.round((data.main.temp_min - 273.15) * 9/5 + 32)
-    const fMaxWeather = Math.round((data.main.temp_max - 273.15) * 9/5 + 32)
-    const cloudsWeather = data.clouds.all;
-    const windSpeedWeather = Math.round(data.wind.speed * 3.6);
+function currentWeather(latitude,longitude){
+  const apiKeY = '6cb674453572835b5ade4f38d097ef0e';
+  const apiUrL = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKeY}`;
 
-    const weatherItem = document.createElement("div");
-    weatherItem.innerHTML = `
-    <div class="frame">
-      <div class="currentTitle">
-        <h2>${city}</h2>
-        &nbsp;&nbsp;<i onclick="changeIcon(this)" class="fa-sharp fa-regular fa-star" style="color: #ffa50a;"></i>
-      </div>
-      <h2>${tempWeather}ºC</h2>
-      <div class="ThourMain">
-        <div class="mainContent" style="margin:10px;">
-          <div class="dateIcon">
-            <h2>${dateText}</h2>
-            <img src="https://openweathermap.org/img/wn/${iconWeather}@4x.png">            
+  fetch(apiUrL)
+    .then(response => response.json())
+    .then(data => {
+      const weatherDiv = document.getElementById('weather');
+      const date = new Date(data.dt * 1000);
+      const dateText = date.toLocaleDateString();
+      const iconWeather = data.weather[0].icon;
+      const city = localStorage.getItem("cityName");
+      const tempWeather = Math.round(data.main.temp - 273.15);
+      const fWeather = Math.round((data.main.temp - 273.15) * 9/5 + 32);
+      const minWeather = Math.round(data.main.temp_min - 273.15);
+      const maxWeather = Math.round(data.main.temp_max - 273.15);
+      const fMinWeather = Math.round((data.main.temp_min - 273.15) * 9/5 + 32)
+      const fMaxWeather = Math.round((data.main.temp_max - 273.15) * 9/5 + 32)
+      const cloudsWeather = data.clouds.all;
+      const windSpeedWeather = Math.round(data.wind.speed * 3.6);
+
+      weatherDiv.innerHTML = "";
+
+      const weatherItem = document.createElement("div");
+      weatherItem.innerHTML = `
+      <div class="frame">
+        <div class="alignment">
+          <div class="currentTitle">
+            <h2>${city}</h2>
+            <h3>${tempWeather}ºC</h3>
           </div>
-          <div class="temp">
-            <div class="generalDate">
-            <p><i class="fa-solid fa-temperature-arrow-up"></i>&nbsp;${maxWeather}ºC</p>
-            <p><i class="fa-solid fa-temperature-arrow-down"></i>&nbsp;${minWeather}ºC</p>
-              <p><i class="fa-solid fa-cloud"></i>&nbsp;${cloudsWeather}%</p>
-              <p><i class="fa-solid fa-wind"></i>&nbsp;${windSpeedWeather}Km/h</p>
+          <i id="iconElementId" onclick="changeIcon(this)" class="fa-sharp fa-regular fa-star" style="color: #ffa50a;"></i>
+        </div>
+        <div class="ThourMain">
+          <div class="mainContent" style="margin:10px;">
+            <div class="dateIcon">
+              <h2>${dateText}</h2>
+              <img src="https://openweathermap.org/img/wn/${iconWeather}@4x.png">            
             </div>
-          </div>      
+            <div class="temp">
+              <div class="generalDate">
+                <p><i class="fa-solid fa-temperature-arrow-up"></i>&nbsp;${maxWeather}ºC</p>
+                <p><i class="fa-solid fa-temperature-arrow-down"></i>&nbsp;${minWeather}ºC</p>
+                <p><i class="fa-solid fa-cloud"></i>&nbsp;${cloudsWeather}%</p>
+                <p><i class="fa-solid fa-wind"></i>&nbsp;${windSpeedWeather}Km/h</p>
+              </div>
+            </div>      
+          </div>
         </div>
       </div>
-    </div>
-    `;
-    weatherDiv.appendChild(weatherItem);
-  })                                                         
-  .catch(error => {
-    console.error('Error fetching data:', error);
-});
+      `;
+      weatherDiv.appendChild(weatherItem);
+    })                                                         
+    .catch(error => {
+      console.error('Error fetching data:', error);
+  });
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -59,33 +65,34 @@ document.addEventListener("DOMContentLoaded", function() {
   
   var selectElement = document.getElementById("favorites-list");
   
-  // Add event listener to the <select> element
   selectElement.addEventListener("change", function(event) {
-    var selectedCity = event.target.value;
-    localStorage.setItem("cityName", selectedCity);
+    var selectedOption = event.target.options[event.target.selectedIndex];
+    var selectedCity = selectedOption.value;
+    var lat = selectedOption.getAttribute("data-lat");
+    var lng = selectedOption.getAttribute("data-lng");
 
-    // Apply the icon change if the selected city matches a stored city
-    var iconElement = document.getElementById("your-icon-element-id");
-  // Make sure the iconElement is not null before accessing classList
-    if (iconElement) {
-      var storedCities = JSON.parse(localStorage.getItem("storedCities")) || [];
-      
-      if (storedCities.includes(selectedCity)) {
-        iconElement.classList.add("fa-solid");
-      } else {
-        iconElement.classList.remove("fa-solid");
-      }
-    }
-      location.reload();
+    localStorage.setItem("cityName", selectedCity);
+    localStorage.setItem("latitude", lat);
+    localStorage.setItem("longitude", lng);
+
+    const date = transportDate();
+    
+    dailyForecast(lat,lng);
+
+    hourlyForecast(date,lat,lng);
+
+    currentWeather2(lat,lng); 
   });
 });
 
 function changeIcon(x) {
   // Toggle the icon class
   x.classList.toggle("fa-solid");
-
-  // Retrieve "cityName" from localStorage
+ 
+   // Retrieve "cityName" from localStorage
   var cityName = localStorage.getItem("cityName");
+  var lat = localStorage.getItem("latitude")
+  var lng = localStorage.getItem("longitude")
 
   // Find the select element
   var selectElement = document.getElementById("favorites-list");
@@ -118,6 +125,8 @@ function changeIcon(x) {
       var optionElement = document.createElement("option");
       optionElement.value = cityName;
       optionElement.text = cityName;
+      optionElement.setAttribute("data-lat", lat);
+      optionElement.setAttribute("data-lng", lng);
       selectElement.appendChild(optionElement);
 
       // Add cityName to localStorage
@@ -137,11 +146,21 @@ function restoreAppendedCities() {
     var optionElement = document.createElement("option");
     optionElement.value = storedCities[i];
     optionElement.text = storedCities[i];
+    
+    // Create hidden options for lat and lng values
+    var latOption = document.createElement("option");
+    latOption.value = storedCities[i] + "_lat";
+    latOption.text = storedCities[i] + "_lat";
+    latOption.style.display = "none";
+    
+    var lngOption = document.createElement("option");
+    lngOption.value = storedCities[i] + "_lat";
+    lngOption.text = storedCities[i] + "_lng";
+    lngOption.style.display = "none";
+    
+    // Append options to select element
     selectElement.appendChild(optionElement);
+    selectElement.appendChild(latOption);
+    selectElement.appendChild(lngOption);
   }
 }
-
-// // Call the restoreAppendedCities function on page load
-// window.onload = function() {
-//   restoreAppendedCities();
-// };

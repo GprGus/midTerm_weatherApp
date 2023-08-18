@@ -11,6 +11,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  h2 {
+    align-self: flex-start;
+  }
+}
+
+.cardClicked {
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
 #forecast {
@@ -40,6 +47,7 @@
     
     &:hover {
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      
     }
   
     .card-content {
@@ -102,17 +110,9 @@
       .details1 {
         display: flex;
         flex-direction: row;
+        flex-wrap: wrap;
         margin-bottom: -20px;
         margin-left: 20px;
-        p {
-          display: flex;
-          flex-direction: row;
-        }
-      }
-      .details2 {
-        display: flex;
-        flex-direction: row;
-        margin-left: 15px;
         p {
           display: flex;
           flex-direction: row;
@@ -126,55 +126,77 @@
   font-family: "Roboto", sans-serif;
   font-size: 1.3rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   overflow-x: auto;
   margin: auto;
-  .ThourMain {
-    background-color: white ;
+  .frame {
     border: 1px solid rgba(0, 0, 0, 0.225);
-    border-radius: 30px;
-    height: 350px;
-    width: 700px;
-    .mainContent {
+    width: 1400px;
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .alignment {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      .dateIcon {
-        text-align: center;
-        margin-left: 20px;
-      }
-      .temp {
+      .currentTitle {
         display: flex;
         flex-direction: column;
-        margin-right: 80px;
+        align-items: center;
         h2 {
-          text-align: center;
+          font-size: 1.5rem;
         }
-        .generalDate {
-          
+      }
+      i {
+        margin-top: 22px;
+        margin-left: 15px;
+      }
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    .ThourMain {
+      grid-column-start: 8;
+      grid-row-start: 6;
+      background-color: white ;
+      border: 1px solid rgba(0, 0, 0, 0.225);
+      border-radius: 30px;
+      height: 250px;
+      width: 700px;
+      .mainContent {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        .dateIcon {
+          text-align: center;
+          margin-left: 20px;
+          img {
+            max-width: 120px;
+          }
+        }
+        .temp {
+          display: flex;
+          flex-direction: column;
+          margin-right: 80px;
+          h2 {
+            text-align: center;
+          }
+          .generalDate {
+            
+          }
         }
       }
     }
   }
+  
 }
 
-.frame {
-  border: 1px solid rgba(0, 0, 0, 0.225);
-  width: 1400px;
-  height: 650px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  .currentTitle {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-}
+
 
 header {
   display:flex;
@@ -183,6 +205,14 @@ header {
   height: 70px;
   // background-color: aliceblue;
   align-items: center;
+
+  select {
+    outline:1px solid grey;
+    border:none;
+    height: 40px;
+    width: 200px;
+    border-radius: 10px;
+  }
 
   form {
     display:flex;
@@ -220,9 +250,55 @@ header {
 
 
 @media (max-width: 375px) {
-  // .container {
-  //   display: none;
-  // }
+
+  header {
+    display:flex;
+    flex-direction:row;
+    justify-content: space-between;
+    height: 70px;
+    // background-color: aliceblue;
+    align-items: center;
+  
+    select {
+      outline:1px solid grey;
+      border:none;
+      height: 40px;
+      width: 40%;
+      border-radius: 10px;
+    }
+  
+    form {
+      display:flex;
+      flex-direction:row;
+      padding:1px;
+      // margin-top: 20px;
+    
+      input {
+        outline:1px solid grey;
+        border:none;
+        height: 40px;
+        width: 100%;
+        border-radius: 10px;
+        // margin-top: 1px;
+    
+        &:focus {
+          outline: none;
+        }
+        &:focus-within {
+          outline: 1px solid gray;
+        }
+      }
+    
+    
+      button {
+        border:1px solid black;
+        height: 30px;
+        width: 30px;  
+        background:black;
+        color:white;
+      }
+    }
+  }
 
   #forecast {
   font-family: "Roboto", sans-serif;
@@ -299,7 +375,7 @@ header {
   font-size: 1.3rem;
   max-width: 375px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -307,28 +383,18 @@ header {
     border: 1px solid rgba(0, 0, 0, 0.225);
     border-radius: 30px;
     margin-right: 10px;
-    height: 150px;
-    width:150px;
+    margin-bottom: 10px;
+    height: 60px;
+    width: 370px;
     .section-content {
+      display: flex;
+      flex-direction: column;
+      // align-items: center;
       .details1 {
+        width: 90%;
         display: flex;
         flex-direction: row;
-        margin-left: 20px;
-        align-items: center;
-        p {
-          display: flex;
-          flex-direction: row;
-        }
-      }
-      .details2 {
-        display: flex;
-        flex-direction: row;
-        margin-left: 20px;
-        align-items: center;
-        p {
-          display: flex;
-          flex-direction: row;
-        }
+        justify-content: space-around;
       }
     }
   }
@@ -336,43 +402,78 @@ header {
 
 #weather {
   font-family: "Roboto", sans-serif;
-  font-size: 0.8rem;
+  font-size: 1.3rem;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
   flex-wrap: nowrap;
   overflow-x: auto;
   margin: auto;
-  .ThourMain {
+  .frame {
     border: 1px solid rgba(0, 0, 0, 0.225);
-    border-radius: 30px;
-    height: 220px;
-    width: 345px;
-    .mainContent {
+    width: 360px;
+    height: 410px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .alignment {
       display: flex;
       flex-direction: row;
-      justify-content: space-between;
-      flex-wrap: nowrap;
-      overflow-x: auto;
-      .dateIcon {
-        text-align: center;
-        margin-left: 20px;
-        img {
-          max-width: 120px;
-        }
-      }
-      .temp {
+      .currentTitle {
         display: flex;
         flex-direction: column;
-        margin-right: 80px;
+        align-items: center;
         h2 {
-          text-align: center;
+          font-size: 1.5rem;
         }
-        .generalDate {
-          
+      }
+      i {
+        margin-top: 22px;
+        margin-left: 15px;
+      }
+    }
+    h3 {
+      font-size: 1.5rem;
+    }
+    .ThourMain {
+      grid-column-start: 8;
+      grid-row-start: 6;
+      background-color: white ;
+      border: 1px solid rgba(0, 0, 0, 0.225);
+      border-radius: 30px;
+      height: 250px;
+      width: 340px;
+      .mainContent {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        .dateIcon {
+          text-align: center;
+          margin-left: 20px;
+          img {
+            max-width: 100px;
+          }
+          h2 {
+            font-size: 1.5rem;
+          }
+        }
+        .temp {
+          display: flex;
+          flex-direction: column;
+          margin-right: 30px;
+          h2 {
+            text-align: center;
+          }
+          .generalDate {
+            
+          }
         }
       }
     }
   }
+  
 }
 }
